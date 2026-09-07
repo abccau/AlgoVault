@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useCallback } from 'react';
 import { useLiveQuery } from 'dexie-react-hooks';
-import { db, seedInitialDataIfNeeded } from './db';
+import { db } from './db';
 import { Concept, Question, SupportedLanguage, BlitzAttempt } from './types';
 import { Sidebar } from './components/common/Sidebar';
 import { ConceptGraph } from './components/graph/ConceptGraph';
@@ -20,7 +20,6 @@ export const App: React.FC = () => {
   const concepts = useLiveQuery(() => db.concepts.toArray(), []) || [];
 
   useEffect(() => {
-    seedInitialDataIfNeeded();
   }, []);
 
   const [searchQuery, setSearchQuery] = useState('');

@@ -3,31 +3,6 @@ import { Handle, Position } from '@xyflow/react';
 import { Plus, Zap, X } from 'lucide-react';
 import { Concept } from '../../types';
 
-// Map old Lucide icon names → emoji
-const ICON_MAP: Record<string, string> = {
-  ChevronsLeftRight: '↔️',
-  Maximize2: '🪟',
-  Activity: '🐢',
-  Search: '🔍',
-  Layers: '📚',
-  Cpu: '🧮',
-  GitCommit: '🌳',
-  Network: '🕸️',
-  CornerUpLeft: '↩️',
-  BarChart2: '📊',
-  Sliders: '📐',
-  Compass: '🎯',
-  FolderTree: '🗂️',
-  Share2: '🔗',
-};
-
-const resolveIcon = (icon?: string): string => {
-  if (!icon) return '⚡';
-  if (ICON_MAP[icon]) return ICON_MAP[icon];
-  if (/\p{Emoji}/u.test(icon)) return icon;
-  return '⚡';
-};
-
 interface ConceptNodeData {
   concept: Concept;
   questionCount: number;
@@ -42,7 +17,6 @@ const SIZE = 140;
 export const ConceptNode = memo(({ data }: { data: ConceptNodeData }) => {
   const { concept, questionCount, onAddQuestion, onRandomBlitz, onDelete } = data;
   const color = concept.color || '#38bdf8';
-  const iconEmoji = resolveIcon(concept.icon);
 
   return (
     <div
@@ -87,8 +61,7 @@ export const ConceptNode = memo(({ data }: { data: ConceptNodeData }) => {
           (e.currentTarget as HTMLElement).style.borderColor = `${color}60`;
         }}
       >
-        {/* Emoji icon */}
-        <span style={{ fontSize: 26, lineHeight: 1, filter: 'saturate(1.2)' }}>{iconEmoji}</span>
+
 
         {/* Concept name */}
         <span

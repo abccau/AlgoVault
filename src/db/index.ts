@@ -1,6 +1,5 @@
 import Dexie, { type Table } from 'dexie';
 import { Question, Concept, BlitzAttempt } from '../types';
-import { INITIAL_CONCEPTS, INITIAL_QUESTIONS } from './initialData';
 
 export class LeetCodeDatabase extends Dexie {
   questions!: Table<Question, string>;
@@ -18,16 +17,3 @@ export class LeetCodeDatabase extends Dexie {
 }
 
 export const db = new LeetCodeDatabase();
-
-// Seed initial data if database is empty
-export async function seedInitialDataIfNeeded(): Promise<void> {
-  const conceptCount = await db.concepts.count();
-  if (conceptCount === 0) {
-    await db.concepts.bulkAdd(INITIAL_CONCEPTS);
-  }
-
-  const questionCount = await db.questions.count();
-  if (questionCount === 0) {
-    await db.questions.bulkAdd(INITIAL_QUESTIONS);
-  }
-}
