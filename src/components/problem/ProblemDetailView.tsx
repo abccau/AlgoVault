@@ -16,9 +16,12 @@ import {
   Sparkles,
   Layers,
   Tag,
+  RefreshCw,
+  Loader2,
 } from 'lucide-react';
 import { Question, Solution, SupportedLanguage } from '../../types';
 import { exportQuestionToMarkdown } from '../../services/exportService';
+import { fetchLeetCodeProblem, extractStarterCode } from '../../services/leetcodeApi';
 import { useToast } from '../common/Toast';
 import { useConfirm } from '../common/ConfirmDialog';
 
@@ -49,6 +52,34 @@ export const ProblemDetailView: React.FC<ProblemDetailViewProps> = ({
   const [copied, setCopied] = useState(false);
   const [showHints, setShowHints] = useState(false);
   const [isEditing, setIsEditing] = useState(false);
+  const [isRefetching, setIsRefetching] = useState(false);
+
+  const isMissingContent = !question.content || question.content.includes('not retrieved automatically');
+
+  const handleRefetch = async () => {
+    setIsRefetching(true);
+    try {
+      const data = await fetchLeetCodeProblem(question.titleSlug || question.id);
+      const starters = extractStarterCode(data.codeSnippets);
+      const updated: Question = {
+        ...question,
+        title: data.title,
+        titleSlug: data.titleSlug,
+        difficulty: data.difficulty,
+        content: data.content,
+        topicTags: data.topicTags.length > 0 ? data.topicTags : question.topicTags,
+        hints: data.hints.length > 0 ? data.hints : question.hints,
+        starterCode: starters,
+        updatedAt: Date.now(),
+      };
+      onUpdateQuestion(updated);
+      toast.success(`Refreshed problem #${question.id} successfully!`);
+    } catch (err: any) {
+      toast.error(err.message || 'Failed to re-fetch from LeetCode');
+    } finally {
+      setIsRefetching(false);
+    }
+  };
 
   const solutions = question.solutions || [];
   const currentSolution = solutions[activeSolutionIdx] || null;
@@ -201,7 +232,22 @@ export const ProblemDetailView: React.FC<ProblemDetailViewProps> = ({
 
             {/* Problem description */}
             <div className="space-y-2">
-              <p className="section-label">Problem Statement</p>
+              <div className="flex items-center justify-between">
+                <p className="section-label">Problem Statement</p>
+                <button
+                  onClick={handleRefetch}
+                  disabled={isRefetching}
+                  className="flex items-center gap-1.5 px-2.5 py-1 rounded-lg text-[11px] font-medium transition-all disabled:opacity-50"
+                  style={{
+                    background: isMissingContent ? 'rgba(56,189,248,0.15)' : 'rgba(255,255,255,0.05)',
+                    color: isMissingContent ? '#38bdf8' : '#94a3b8',
+                    border: isMissingContent ? '1px solid rgba(56,189,248,0.3)' : '1px solid rgba(255,255,255,0.08)',
+                  }}
+                >
+                  {isRefetching ? <Loader2 size={11} className="animate-spin" /> : <RefreshCw size={11} />}
+                  {isRefetching ? 'Fetching…' : isMissingContent ? 'Fetch from LeetCode' : 'Re-fetch'}
+                </button>
+              </div>
               <div
                 className="lc-content p-4 rounded-xl"
                 style={{ background: 'rgba(13,17,23,0.8)', border: '1px solid rgba(255,255,255,0.07)' }}
