@@ -43,8 +43,8 @@ export const ProblemAddModal: React.FC<ProblemAddModalProps> = ({
   const [topicTags, setTopicTags] = useState<string[]>([]);
   const [hints, setHints] = useState<string[]>([]);
   const [starterCode, setStarterCode] = useState<{ python: string; cpp: string }>({
+    cpp: '#include <vector>\n#include <iostream>\n\nclass Solution {\npublic:\n    void solve() {\n        \n    }\n};',
     python: 'class Solution:\n    def solve(self):\n        pass',
-    cpp: '#include <vector>\n\nclass Solution {\npublic:\n    void solve() {\n        \n    }\n};',
   });
 
   const [selectedConceptIds, setSelectedConceptIds] = useState<string[]>(
@@ -57,7 +57,7 @@ export const ProblemAddModal: React.FC<ProblemAddModalProps> = ({
     {
       id: `sol-${Date.now()}`,
       name: 'Approach 1: Optimal',
-      language: 'python',
+      language: 'cpp',
       code: 'class Solution:\n    def solve(self):\n        pass',
       timeComplexity: 'O(N)',
       spaceComplexity: 'O(1)',
@@ -98,8 +98,8 @@ export const ProblemAddModal: React.FC<ProblemAddModalProps> = ({
       setSolutions([{
         id: `sol-py-${Date.now()}`,
         name: 'Approach 1 (Python)',
-        language: 'python',
-        code: starters.python,
+        language: 'cpp',
+        code: starters.cpp,
         timeComplexity: 'O(N)',
         spaceComplexity: 'O(1)',
         notes: '',
@@ -393,8 +393,8 @@ export const ProblemAddModal: React.FC<ProblemAddModalProps> = ({
                         updateActiveSolution('code', l === 'cpp' ? starterCode.cpp : starterCode.python);
                       }
                     }} className="input-base font-mono">
-                      <option value="python">Python 3</option>
                       <option value="cpp">C++</option>
+                      <option value="python">Python 3</option>
                     </select>
                     <div className="flex gap-1.5">
                       <input type="text" value={currentSol.timeComplexity} onChange={e => updateActiveSolution('timeComplexity', e.target.value)} placeholder="O(N)" className="input-base text-amber-300 font-mono w-1/2" />

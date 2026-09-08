@@ -105,7 +105,7 @@ export const ReviewScheduleModal: React.FC<ReviewScheduleModalProps> = ({
                     <div className="flex items-center gap-2">
                       <button
                         onClick={() => {
-                          onLaunchBlitz(q, 'python');
+                          onLaunchBlitz(q, 'cpp');
                           onClose();
                         }}
                         className="flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-amber-500 hover:bg-amber-400 text-slate-950 font-bold text-xs transition-all shadow-md active:scale-95"

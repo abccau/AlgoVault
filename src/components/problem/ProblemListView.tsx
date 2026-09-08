@@ -106,7 +106,7 @@ export const ProblemListView: React.FC<ProblemListViewProps> = ({
         ) : (
           <div className="space-y-1.5">
             {sorted.map((q) => {
-              const hasPython = q.solutions?.some(s => s.language === 'python');
+              const hasCpp = q.solutions?.some(s => s.language === 'cpp');
               const isDue = q.nextReviewDue && q.nextReviewDue <= Date.now();
 
               return (
@@ -198,7 +198,7 @@ export const ProblemListView: React.FC<ProblemListViewProps> = ({
                       View
                     </button>
                     <button
-                      onClick={() => onLaunchBlitz(q, hasPython ? 'python' : 'cpp')}
+                      onClick={() => onLaunchBlitz(q, hasCpp ? 'cpp' : 'python')}
                       className="btn-primary !px-2.5 !py-1.5 !text-[11px]"
                     >
                       <Zap size={11} />

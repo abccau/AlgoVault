@@ -137,7 +137,7 @@ export const DueReviewView: React.FC<DueReviewViewProps> = ({ questions, onLaunc
                   {/* Actions */}
                   <div className="flex items-center gap-2 flex-shrink-0">
                     <button
-                      onClick={() => onLaunchBlitz(q, 'python')}
+                      onClick={() => onLaunchBlitz(q, 'cpp')}
                       className="btn-primary !text-[11px] !py-1.5"
                     >
                       <Zap size={12} />

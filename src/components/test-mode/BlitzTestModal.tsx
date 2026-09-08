@@ -50,7 +50,7 @@ public:
     }
 };`;
     }
-    return question.starterCode?.python ||
+    return question.starterCode?.python || question.starterCode?.cpp ||
 `class Solution:
     def solve(self):
         pass`;
@@ -201,11 +201,16 @@ public:
                       className={`px-3 py-1 rounded-lg text-[11.5px] font-semibold transition-all ${
                         language === lang ? 'text-slate-950 font-bold' : 'text-slate-400 hover:text-slate-200'
                       }`}
-                      style={language === lang ? {
-                        background: lang === 'python' ? '#4ade80' : '#fb923c',
-                      } : {}}
                     >
-                      {lang === 'python' ? 'Python 3' : 'C++'}
+                      <span
+                        className="text-[10px] font-mono font-bold px-1.5 py-0.5 rounded shadow-sm"
+                        style={{
+                          background: lang === 'cpp' ? '#fb923c' : '#4ade80',
+                          color: '#000'
+                        }}
+                      >
+                      {lang === 'cpp' ? 'C++' : 'Python 3'}
+                      </span>
                     </button>
                   ))}
                 </div>

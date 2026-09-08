@@ -64,8 +64,8 @@ export const ProblemDetailView: React.FC<ProblemDetailViewProps> = ({
     const newSolution: Solution = {
       id: `sol-${Date.now()}`,
       name: `Approach ${solutions.length + 1}: Optimal`,
-      language: 'python',
-      code: question.starterCode?.python || 'class Solution:\n    def solve(self):\n        pass',
+      language: 'cpp',
+      code: question.starterCode?.cpp || '#include <vector>\n\nclass Solution {\npublic:\n    void solve() {\n        \n    }\n};',
       timeComplexity: 'O(N)',
       spaceComplexity: 'O(1)',
       notes: '',
@@ -97,7 +97,7 @@ export const ProblemDetailView: React.FC<ProblemDetailViewProps> = ({
       style={{ background: 'rgba(0,0,0,0.75)', backdropFilter: 'blur(6px)' }}
     >
       <div
-        className="w-full h-full max-w-[1280px] max-h-[94vh] rounded-2xl flex flex-col overflow-hidden shadow-2xl"
+        className="w-full h-full max-w-[98vw] max-h-[98vh] rounded-2xl flex flex-col overflow-hidden shadow-2xl"
         style={{
           background: '#121212',
           border: '1px solid rgba(255,255,255,0.1)',
@@ -131,7 +131,7 @@ export const ProblemDetailView: React.FC<ProblemDetailViewProps> = ({
 
           <div className="flex items-center gap-2 flex-shrink-0">
             <button
-              onClick={() => onStartBlitz(question, currentSolution?.language || 'python')}
+              onClick={() => onStartBlitz(question, currentSolution?.language || 'cpp')}
               className="btn-primary !text-[11.5px]"
             >
               <Zap size={13} />
@@ -326,8 +326,8 @@ export const ProblemDetailView: React.FC<ProblemDetailViewProps> = ({
                       onChange={e => handleUpdateCurrentSolution('language', e.target.value as SupportedLanguage)}
                       className="input-base"
                     >
-                      <option value="python">Python 3</option>
                       <option value="cpp">C++</option>
+                      <option value="python">Python 3</option>
                     </select>
                     <div className="flex gap-1.5">
                       <input

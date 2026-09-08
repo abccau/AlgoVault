@@ -15,7 +15,7 @@ export const ProblemModeSelectModal: React.FC<ProblemModeSelectModalProps> = ({
   onEnterViewMode,
   onEnterTestMode,
 }) => {
-  const [selectedLanguage, setSelectedLanguage] = useState<SupportedLanguage>('python');
+  const [selectedLanguage, setSelectedLanguage] = useState<SupportedLanguage>('cpp');
 
   if (!question) return null;
 

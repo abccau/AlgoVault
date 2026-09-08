@@ -52,8 +52,8 @@ export const App: React.FC = () => {
       return;
     }
     const randomQ = attached[Math.floor(Math.random() * attached.length)];
-    const hasPython = randomQ.solutions?.some(s => s.language === 'python');
-    handleStartBlitz(randomQ, hasPython ? 'python' : 'cpp');
+    const hasCpp = randomQ.solutions?.some(s => s.language === 'cpp');
+    handleStartBlitz(randomQ, hasCpp ? 'cpp' : 'python');
   }, [questions, handleStartBlitz, toast]);
 
   const handleAddQuestionToConcept = useCallback((conceptId: string) => {
