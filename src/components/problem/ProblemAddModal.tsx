@@ -97,7 +97,7 @@ export const ProblemAddModal: React.FC<ProblemAddModalProps> = ({
 
       setSolutions([{
         id: `sol-py-${Date.now()}`,
-        name: 'Approach 1 (Python)',
+        name: 'Approach 1',
         language: 'cpp',
         code: starters.cpp,
         timeComplexity: 'O(N)',
@@ -128,7 +128,7 @@ export const ProblemAddModal: React.FC<ProblemAddModalProps> = ({
     const lang: SupportedLanguage = solutions[activeSolIdx]?.language === 'cpp' ? 'python' : 'cpp';
     const newSol: Solution = {
       id: `sol-${Date.now()}-${solutions.length}`,
-      name: `Approach ${solutions.length + 1} (${lang === 'cpp' ? 'C++' : 'Python'})`,
+      name: `Approach ${solutions.length + 1}`,
       language: lang,
       code: lang === 'cpp' ? starterCode.cpp : starterCode.python,
       timeComplexity: 'O(N)',

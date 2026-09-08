@@ -94,7 +94,7 @@ export const ProblemDetailView: React.FC<ProblemDetailViewProps> = ({
   const handleAddNewSolution = () => {
     const newSolution: Solution = {
       id: `sol-${Date.now()}`,
-      name: `Approach ${solutions.length + 1}: Optimal`,
+      name: `Approach ${solutions.length + 1}`,
       language: 'cpp',
       code: question.starterCode?.cpp || '#include <vector>\n\nclass Solution {\npublic:\n    void solve() {\n        \n    }\n};',
       timeComplexity: 'O(N)',
@@ -142,13 +142,13 @@ export const ProblemDetailView: React.FC<ProblemDetailViewProps> = ({
         >
           <div className="flex items-center gap-3 min-w-0">
             <span
-              className="font-mono text-[11px] font-bold px-2 py-1 rounded-md text-slate-400 flex-shrink-0"
+              className="font-mono text-[12px] font-bold px-2 py-1 rounded-md text-slate-400 flex-shrink-0"
               style={{ background: 'rgba(255,255,255,0.06)', border: '1px solid rgba(255,255,255,0.1)' }}
             >
               #{question.id}
             </span>
-            <h2 className="font-bold text-[15px] text-slate-100 font-heading truncate">{question.title}</h2>
-            <span className={`text-[10.5px] font-bold px-2 py-0.5 rounded-md flex-shrink-0 ${DIFF_BADGE[question.difficulty] || DIFF_BADGE.Medium}`}>
+            <h2 className="font-bold text-[17px] text-slate-100 font-heading truncate">{question.title}</h2>
+            <span className={`text-[11.5px] font-bold px-2 py-0.5 rounded-md flex-shrink-0 ${DIFF_BADGE[question.difficulty] || DIFF_BADGE.Medium}`}>
               {question.difficulty}
             </span>
             <a
@@ -210,19 +210,19 @@ export const ProblemDetailView: React.FC<ProblemDetailViewProps> = ({
               </p>
               <div className="flex flex-wrap gap-1.5">
                 {question.conceptIds?.map(c => (
-                  <span key={c} className="flex items-center gap-1 text-[11px] px-2 py-0.5 rounded-md font-mono"
+                  <span key={c} className="flex items-center gap-1 text-[12px] px-2 py-0.5 rounded-md font-mono"
                     style={{ background: 'rgba(56,189,248,0.1)', color: '#38bdf8', border: '1px solid rgba(56,189,248,0.22)' }}>
                     <Layers size={9} />{c}
                   </span>
                 ))}
                 {question.userTags?.map(t => (
-                  <span key={t} className="flex items-center gap-1 text-[11px] px-2 py-0.5 rounded-md font-mono"
+                  <span key={t} className="flex items-center gap-1 text-[12px] px-2 py-0.5 rounded-md font-mono"
                     style={{ background: 'rgba(168,85,247,0.1)', color: '#c084fc', border: '1px solid rgba(168,85,247,0.22)' }}>
                     <Tag size={9} />{t}
                   </span>
                 ))}
                 {question.topicTags?.map(t => (
-                  <span key={t} className="text-[10.5px] px-1.5 py-0.5 rounded text-slate-500"
+                  <span key={t} className="text-[11.5px] px-1.5 py-0.5 rounded text-slate-500"
                     style={{ background: 'rgba(255,255,255,0.05)', border: '1px solid rgba(255,255,255,0.08)' }}>
                     {t}
                   </span>
@@ -298,7 +298,7 @@ export const ProblemDetailView: React.FC<ProblemDetailViewProps> = ({
                   <button
                     key={sol.id || idx}
                     onClick={() => { setActiveSolutionIdx(idx); setIsEditing(false); }}
-                    className={`px-3 py-1.5 rounded-lg text-[11.5px] font-medium flex items-center gap-1.5 whitespace-nowrap transition-all ${
+                    className={`px-3 py-1.5 rounded-lg text-[13px] font-medium flex items-center gap-1.5 whitespace-nowrap transition-all ${
                       activeSolutionIdx === idx
                         ? 'text-sky-400 font-semibold'
                         : 'text-slate-500 hover:text-slate-300'
@@ -309,7 +309,7 @@ export const ProblemDetailView: React.FC<ProblemDetailViewProps> = ({
                     } : {}}
                   >
                     <span
-                      className="text-[9.5px] font-mono px-1.5 py-0.5 rounded font-bold"
+                      className="text-[10.5px] font-mono px-1.5 py-0.5 rounded font-bold"
                       style={{ background: 'rgba(255,255,255,0.07)', color: sol.language === 'cpp' ? '#fb923c' : '#4ade80' }}
                     >
                       {sol.language === 'cpp' ? 'C++' : 'Py3'}
@@ -319,7 +319,7 @@ export const ProblemDetailView: React.FC<ProblemDetailViewProps> = ({
                 ))}
                 <button
                   onClick={handleAddNewSolution}
-                  className="px-2.5 py-1.5 rounded-lg text-[11px] text-slate-600 hover:text-sky-400 border border-dashed transition-all flex items-center gap-1 whitespace-nowrap mb-2"
+                  className="px-2.5 py-1.5 rounded-lg text-[12px] text-slate-600 hover:text-sky-400 border border-dashed transition-all flex items-center gap-1 whitespace-nowrap mb-2"
                   style={{ borderColor: 'rgba(255,255,255,0.1)' }}
                 >
                   <Plus size={12} />
@@ -355,7 +355,7 @@ export const ProblemDetailView: React.FC<ProblemDetailViewProps> = ({
             {/* Solution meta bar */}
             {currentSolution && (
               <div
-                className="px-4 py-2.5 flex items-center justify-between gap-4 flex-shrink-0 text-[11.5px]"
+                className="px-4 py-2.5 flex items-center justify-between gap-4 flex-shrink-0 text-[13px]"
                 style={{ background: 'rgba(13,17,23,0.5)', borderBottom: '1px solid rgba(255,255,255,0.06)' }}
               >
                 {isEditing ? (
@@ -395,9 +395,9 @@ export const ProblemDetailView: React.FC<ProblemDetailViewProps> = ({
                 ) : (
                   <>
                     <div className="flex items-center gap-2.5 min-w-0">
-                      <span className="font-semibold text-slate-200 truncate">{currentSolution.name}</span>
+                      <span className="font-semibold text-slate-200 truncate text-[13px]">{currentSolution.name}</span>
                       <span
-                        className="text-[10px] font-mono font-bold px-1.5 py-0.5 rounded flex-shrink-0"
+                        className="text-[11px] font-mono font-bold px-1.5 py-0.5 rounded flex-shrink-0"
                         style={{
                           background: 'rgba(255,255,255,0.07)',
                           color: currentSolution.language === 'cpp' ? '#fb923c' : '#4ade80',
@@ -406,7 +406,7 @@ export const ProblemDetailView: React.FC<ProblemDetailViewProps> = ({
                         {currentSolution.language === 'cpp' ? 'C++17' : 'Python 3'}
                       </span>
                     </div>
-                    <div className="flex items-center gap-2 font-mono font-semibold text-[11px]">
+                    <div className="flex items-center gap-2 font-mono font-semibold text-[12px]">
                       {currentSolution.timeComplexity && (
                         <span className="px-2 py-0.5 rounded-md"
                           style={{ background: 'rgba(245,158,11,0.12)', color: '#fbbf24', border: '1px solid rgba(245,158,11,0.25)' }}>
@@ -468,7 +468,7 @@ export const ProblemDetailView: React.FC<ProblemDetailViewProps> = ({
                     className="input-base !rounded-lg resize-none"
                   />
                 ) : (
-                  <p className="text-[12px] text-slate-400 leading-relaxed">
+                  <p className="text-[13px] text-slate-400 leading-relaxed">
                     {currentSolution.notes || (
                       <span className="text-slate-600 italic">No notes — click Edit to add intuition notes.</span>
                     )}
