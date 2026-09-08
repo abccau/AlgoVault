@@ -1,5 +1,7 @@
 # AlgoVault
 
+**Live App**: [https://benevolent-lamington-efbee9.netlify.app](https://benevolent-lamington-efbee9.netlify.app)
+
 AlgoVault is a personal, local-first LeetCode tracking application. It allows you to track your LeetCode problem-solving progress, review due problems using spaced repetition, and visualize your problem knowledge as an interactive Concept Graph.
 
 ## Features
